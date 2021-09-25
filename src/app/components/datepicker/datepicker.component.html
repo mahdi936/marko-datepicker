@@ -1,0 +1,110 @@
+<div class="marko-container">
+  <div class="marko-header">
+    <div class="marko-date-viewer">
+      <img
+        src="/assets/img/Arrow-Right.svg"
+        class="pointer"
+        (click)="goPrevious()"
+      />
+      <div class="marko-month-view pointer">
+        <img src="/assets/img/Calendar.svg" class="marko-clendar-icon" />
+        <span class="marko-month" (click)="showYearModal()">{{ getYear() }}</span>&nbsp;
+        <span class="marko-month" (click)="showMonthModal()">{{ getMonthName() }}</span>
+      </div>
+      <img
+        src="/assets/img/Arrow-Left.svg"
+        class="pointer"
+        (click)="goNext()"
+      />
+    </div>
+  </div>
+  <div class="marko-body">
+    <div class="marko-days-container">
+      <div
+        (click)="selectDay(day, $event)"
+        [ngClass]="day.dayNumber == 3 ? 'marko-selected-day' : 'marko-day'"
+        *ngFor="let day of daysOfMonth"
+      >
+        <span
+          class="marko-day-title"
+          [ngClass]="day.dayString == 'ج' ? 'friday' : ''"
+        >
+          {{ day.dayString }}
+        </span>
+        <span
+          class="marko-day-number"
+          [ngClass]="day.dayString == 'ج' ? 'friday' : ''"
+        >
+          {{ day.dayNumber }}
+        </span>
+      </div>
+    </div>
+    <div class="marko-hours-container">
+      <div class="marko-hour" *ngFor="let hour of hours">
+        <div class="marko-hour-title-container">
+          <span class="marko-hour-title" *ngIf="hour <= 9">
+            0{{ hour }}:00
+          </span>
+          <span class="marko-hour-title" *ngIf="hour > 9"> {{ hour }}:00 </span>
+        </div>
+        <div class="marko-hour-item-finder">
+          <app-hour-component
+            [hour]="hour"
+            [isFirstHalf]="true"
+          ></app-hour-component>
+          <div class="marko-half-seprator"></div>
+          <app-hour-component
+            [hour]="hour"
+            [isFirstHalf]="false"
+          ></app-hour-component>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="marko-modal-wrapper" *ngIf="showYears">
+  <div class="marko-modal" id="yearModal">
+    <div class="marko-modal-header">
+      <h4>انتخاب سال</h4>
+      <img
+        src="/assets/img/Close.svg"
+        width="12"
+        class="pointer"
+        (click)="closeYearModal()"
+      />
+    </div>
+    <div class="marko-modal-year-body">
+      <h5 *ngFor="let year of years" (click)="setYear(year)">
+        {{ year }}
+      </h5>
+    </div>
+  </div>
+</div>
+
+<div class="marko-modal-wrapper" *ngIf="showMonths">
+  <div class="marko-modal" id="monthModal">
+    <div class="marko-modal-header">
+      <h4>انتخاب ماه</h4>
+      <img
+        src="/assets/img/Close.svg"
+        width="12"
+        class="pointer"
+        (click)="closeMonthModal()"
+      />
+    </div>
+    <div class="marko-modal-year-body">
+      <h5 (click)="setMonth(1)">فروردین</h5>
+      <h5 (click)="setMonth(2)">اردیبهشت</h5>
+      <h5 (click)="setMonth(3)">خرداد</h5>
+      <h5 (click)="setMonth(4)">تیر</h5>
+      <h5 (click)="setMonth(5)">مرداد</h5>
+      <h5 (click)="setMonth(6)">شهریور</h5>
+      <h5 (click)="setMonth(7)">مهر</h5>
+      <h5 (click)="setMonth(8)">آبان</h5>
+      <h5 (click)="setMonth(9)">آذر</h5>
+      <h5 (click)="setMonth(10)">دی</h5>
+      <h5 (click)="setMonth(11)">بهمن</h5>
+      <h5 (click)="setMonth(12)">اسفند</h5>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+.progress{
+  background-color: #fff;
+  height: 30px;
+  width: 0px;
+  box-shadow: 0px 0.5px 1px rgb(0 0 0 / 25%);
+  border-radius: 2px;
+  border-right: 2px solid #00CEA9;
+  overflow: hidden;
+  opacity: 0;
+  transition: width 0.4s,
+}
+.marko-clock-icon{
+  width: 10px;
+  margin-right: 4px;
+}
+
+.marko-hour-container{
+  width: 100px;
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+
+.marko-time-container{
+  display: flex;
+  align-items: flex-start;
+  padding-top: 5px;
+}
+
+.marko-time{
+  font-size: 8px;
+    color: #918FBB;
+    margin-right: 5px;
+}

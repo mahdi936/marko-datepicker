@@ -1,0 +1,19 @@
+<div
+  class="marko-hour-container"
+  (mousemove)="startDragLine($event)"
+  (mousedown)="active()"
+  (mouseup)="deactive($event)"
+  (mouseleave)="deactive($event)"
+>
+  <div class="progress" #progressRef>
+    <div class="marko-time-container">
+      <img src="/assets/img/Clock.svg" class="marko-clock-icon" />
+      <span class="marko-time" *ngIf="!isFirstHalf"
+        >{{ hour }}:30 - {{ hour }}:00 </span
+      >
+      <span class="marko-time" *ngIf="isFirstHalf"
+        >{{ hour + 1 }}:00 - {{ hour }}:30</span
+      >
+    </div>
+  </div>
+</div>
